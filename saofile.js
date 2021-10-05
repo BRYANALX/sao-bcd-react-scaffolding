@@ -7,12 +7,20 @@ module.exports = {
         name: 'name',
         message: 'What is the name of the new project',
         default: this.outFolder,
-        filter: val => val.toLowerCase()
+        filter: val => val.toLowerCase(),
+        store: true
       },
       {
         name: 'description',
-        message: 'How would you descripe the new project',
+        message: 'How would you describe the new project',
         default: `my ${superb()} project`
+      },
+      {
+        name: 'keywords',
+        message: 'What keywords describe the new project',
+        default({ name, description }) {
+          return `${name}, ${description}`
+        }
       },
       {
         name: 'username',
